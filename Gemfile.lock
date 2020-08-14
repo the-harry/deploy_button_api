@@ -5,6 +5,7 @@ GEM
     multi_json (1.15.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
+    open3 (0.1.0)
     rack (2.2.3)
     rack-protection (2.0.8.1)
       rack
@@ -27,6 +28,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  open3
   sinatra
   sinatra-contrib
 
