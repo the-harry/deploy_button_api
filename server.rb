@@ -11,8 +11,8 @@ class Server < Sinatra::Application
     end
 
     post '/deploy' do
-      hex_env = params[:environment].to_i(2).to_s(16)
-      recipe = "./recipes/#{ENV["recipe_#{hex_env}"]}"
+      nibble = params[:environment].to_i(2).to_s(16)
+      recipe = "./recipes/#{ENV["recipe_#{nibble}"]}"
 
       stderr = Open3.capture3(recipe)[1]
 
