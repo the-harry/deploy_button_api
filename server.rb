@@ -11,7 +11,10 @@ class Server < Sinatra::Application
     end
 
     post '/deploy' do
-      stderr = Open3.capture3(ENV['COMMAND'])[1]
+      hex_env = params[:environment].to_i(2).to_s(16)
+      recipe = "./recipes/#{ENV["recipe_#{hex_env}"]}"
+
+      stderr = Open3.capture3(recipe)[1]
 
       if stderr.empty?
         `wall DEPLOY SCHEDULED!`
