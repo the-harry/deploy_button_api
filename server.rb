@@ -16,11 +16,12 @@ class Server < Sinatra::Application
     end
 
     post '/deploy' do
-      recipe = "#{__dir__}/recipes/#{ENV["RECIPE_#{@nibble}"]}"
+      recipe_name = ENV["RECIPE_#{@nibble}"]
+      recipe = "#{__dir__}/recipes/#{recipe_name}"
 
       stderr = Open3.capture3(recipe)[1]
 
-      stderr.empty? ? return_success : return_failure(stderr)
+      stderr.empty? ? return_success(recipe_name) : return_failure(stderr)
     end
   end
 
@@ -28,6 +29,7 @@ class Server < Sinatra::Application
 
   def invalid_request?
     return true if request.env['HTTP_USER_AGENT'] != 'ESP8266HTTPClient'
+    `wall UA correto`
 
     request.env['HTTP_API_KEY'] != ENV['API_KEY']
   end
@@ -37,8 +39,8 @@ class Server < Sinatra::Application
     halt(401)
   end
 
-  def return_success
-    `wall DEPLOY SCHEDULED!`
+  def return_success(recipe)
+    `wall DEPLOY SCHEDULED TO RECIPE: #{recipe}`
     status 201
   end
 
