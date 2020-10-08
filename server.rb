@@ -29,7 +29,6 @@ class Server < Sinatra::Application
 
   def invalid_request?
     return true if request.env['HTTP_USER_AGENT'] != 'ESP8266HTTPClient'
-    `wall UA correto`
 
     request.env['HTTP_API_KEY'] != ENV['API_KEY']
   end
