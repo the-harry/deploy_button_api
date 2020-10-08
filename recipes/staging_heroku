@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd ~/workspace/deploy_button/api
+
+git status
+
+# git stash && git switch master && git pull && git push prod_heroku master:master && git switch - && git stash pop

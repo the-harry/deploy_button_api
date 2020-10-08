@@ -2,8 +2,11 @@
 
 ## ABOUT
 
+This project was created to be an generic and agnostic environment deploy button, it can deploy to multiple servers(16 limit) in different build conditions, that also may handle different languages in the same API.
 
-## CHANGING DEPLOY METHOD
+You need to first add a env with the name of your
+
+## SETTING RECIPES
 
 Before starting your server change the `echo DEPLOY` command inside `Server.rb` for the command to deploy in your environment:
 
